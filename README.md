@@ -1,18 +1,13 @@
 # ip-country-lookup
 
-This template should help get you started developing with Vue 3 in Vite.
+A Vue component that looks up the country of an IP address.
 
-## Recommended IDE Setup
+## Build/run Docker image
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+```
+docker build -t ip-country-lookup .
+docker run -p 8080:80 ip-country-lookup
+```
 
 ## Project Setup
 
@@ -39,6 +34,8 @@ npm run test:unit
 ```
 
 ### Run End-to-End Tests with [Playwright](https://playwright.dev)
+
+No tests added.
 
 ```sh
 # Install browsers for the first run
