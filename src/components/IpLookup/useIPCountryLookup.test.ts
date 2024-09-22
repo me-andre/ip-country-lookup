@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest'
 import { useIpLookup } from './useIPCountryLookup'
-import type { IPAddressDetails, IPLookupResult, IPLookupService } from './IPLookupService'
+import type { IPAddressDetails, IPLookupService } from './IPLookupService'
 import { IPLookupResultType } from './IPLookupService'
 
 describe('useIpLookup', () => {
