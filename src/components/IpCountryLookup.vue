@@ -19,6 +19,7 @@
               placeholder="Enter IP address"
               @focus="handleFocus(row)"
               @blur="handleBlur(row)"
+              @keyup.enter="lookupCountry(row.value)"
               :readonly="isLookupInProgress(row.value)"
             />
             <LoadingIndicator v-if="isLookupInProgress(row.value)" />
