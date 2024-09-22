@@ -244,6 +244,12 @@ ul {
   width: 200px;
 }
 
+.ip-input[readonly] {
+  background-color: #fdfdfd;
+  border: 1px solid #ddd;
+  color: #ddd;
+}
+
 .country-info {
   display: flex;
   align-items: center;

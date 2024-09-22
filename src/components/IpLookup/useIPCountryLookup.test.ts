@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest'
 import { useIpLookup } from './useIPCountryLookup'
-import type { IPAddressDetails, IPLookupService } from './IPLookupService'
+import type { IPAddressDetails, IPLookupError, IPLookupService } from './IPLookupService'
 import { IPLookupResultType } from './IPLookupService'
 
 describe('useIpLookup', () => {
@@ -23,7 +23,7 @@ describe('useIpLookup', () => {
     expect(mockLookupService.lookup).toHaveBeenCalledTimes(1);
   });
 
-  it('should not make a request if the result is already cached for the same IP prefix', async () => {
+  it('should not make a request if the result is already cached (as Success) for the same IP prefix', async () => {
     const mockLookupService = {
       lookup: vi.fn(),
     };
@@ -31,6 +31,25 @@ describe('useIpLookup', () => {
     const mockData: IPAddressDetails = {
       countryCode: 'US',
       utcOffset: '-0500',
+    };
+
+    mockLookupService.lookup.mockResolvedValueOnce(mockData);
+
+    const { lookupCountry } = useIpLookup(mockLookupService);
+
+    await lookupCountry('192.168.0.1');
+    await lookupCountry('192.168.0.100');
+
+    expect(mockLookupService.lookup).toHaveBeenCalledTimes(1);
+  });
+
+  it('should not make a request if the result is already cached (as Error) for the same IP prefix', async () => {
+    const mockLookupService = {
+      lookup: vi.fn(),
+    };
+
+    const mockData: IPLookupError = {
+      error: 'Reserved IP address',
     };
 
     mockLookupService.lookup.mockResolvedValueOnce(mockData);

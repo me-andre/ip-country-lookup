@@ -17,7 +17,7 @@ export function useIpLookup(ipLookupService: IPLookupService) {
 
     const cached = lookupCache[ipPrefix];
 
-    if (cached?.type === IPLookupResultType.Success || lookupInProgress.has(ipPrefix)) {
+    if ((cached && cached.type !== IPLookupResultType.Exception) || lookupInProgress.has(ipPrefix)) {
       return;
     }
 
