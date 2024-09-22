@@ -93,10 +93,13 @@ const addRow = () => {
 const getFormattedTime = (utcOffset: string) => {
   const offsetHours = parseInt(utcOffset.slice(0, 3), 10);
   const offsetMinutes = parseInt(utcOffset.slice(3), 10);
-  const now = new Date(currentTime.value.getTime());
-  now.setUTCHours(now.getUTCHours() + offsetHours);
-  now.setUTCMinutes(now.getUTCMinutes() + offsetMinutes);
-  return now.toLocaleTimeString();
+  const now = new Date(); // Get current time
+  const utcTime = new Date(now.getTime() + now.getTimezoneOffset() * 60000); // Convert to UTC time
+
+  utcTime.setUTCHours(utcTime.getUTCHours() + offsetHours);
+  utcTime.setUTCMinutes(utcTime.getUTCMinutes() + offsetMinutes);
+
+  return utcTime.toLocaleTimeString();
 };
 
 const withTrimmedInput = <Result,>(fn: (value: string) => Result): (value: string) => Result => (input: string) => {
