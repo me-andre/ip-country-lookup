@@ -19,6 +19,7 @@
               placeholder="Enter IP address"
               @focus="handleFocus(row)"
               @blur="handleBlur(row)"
+              @keyup.enter="lookupCountry(row.value)"
               :readonly="isLookupInProgress(row.value)"
             />
             <LoadingIndicator v-if="isLookupInProgress(row.value)" />
@@ -93,7 +94,7 @@ const addRow = () => {
 const getFormattedTime = (utcOffset: string) => {
   const offsetHours = parseInt(utcOffset.slice(0, 3), 10);
   const offsetMinutes = parseInt(utcOffset.slice(3), 10);
-  const now = new Date(); // Get current time
+  const now = new Date();
   const utcTime = new Date(now.getTime() + now.getTimezoneOffset() * 60000); // Convert to UTC time
 
   utcTime.setUTCHours(utcTime.getUTCHours() + offsetHours);
