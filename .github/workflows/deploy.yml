@@ -25,9 +25,7 @@ jobs:
         run: npm ci
 
       - name: Build project
-        env:
-          VITE_BASE_URL: /ip-country-lookup
-        run: npm run build
+        run: VITE_BASE_URL=/ip-country-lookup npm run build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
